@@ -1,0 +1,42 @@
+.project-list {
+    display: inline-block;
+    position: relative;
+
+    .project-content {
+        display: none;
+        position: absolute;
+        background-color: $background-color;
+        width: 260px;
+        border: 1px solid $grey-color-light;
+        border-radius: 5px;
+        z-index: 1;
+        right: 0;
+    }
+
+    .project-content a {
+        display: block;
+        padding: 12px 16px;
+    }
+
+    &:hover .project-content {
+        display: block;
+    }
+
+    @include media-query($on-palm) {
+        .project-content {
+            right: 112px;
+            top: -8px;
+        }
+
+        > a::before {
+            content: '';
+            border: solid #000;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 4px;
+            margin-right: 4px;
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+    }
+}
