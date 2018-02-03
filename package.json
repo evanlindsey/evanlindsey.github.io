@@ -1,0 +1,15 @@
+{
+  "name": "evanlindsey.github.io",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "bash -c 'bundle exec'",
+    "serve": "bash -c 'jekyll serve'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evanlindsey/evanlindsey.github.io.git"
+  },
+  "author": "Evan Lindsey",
+  "dependencies": {},
+  "devDependencies": {}
+}

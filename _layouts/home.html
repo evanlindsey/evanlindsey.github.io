@@ -4,23 +4,37 @@ layout: default
 
 <div class="home">
 
-  <h1 class="page-heading">Posts</h1>
-  
-  {{ content }}
+  <main role="main" class="container">
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
+    <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-orange rounded box-shadow">
+      <img class="mr-3" src="{{ site.logo_url }}" alt="" width="48" height="48">
+      <div class="lh-100">
+        <h6 class="mb-0 text-white lh-100">Evan Lindsey</h6>
+        <small>Since 1987</small>
+      </div>
+    </div>
 
-        <h2>
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+    <div class="my-3 p-3 post-proj rounded box-shadow">
+      <h6 class="border-bottom pb-2 mb-0">Posts</h6>
+      {% for post in site.posts %}
+        <div class="media text-muted pt-3">
+          <img data-src="holder.js/32x32?theme=thumb&bg=2ecc71&fg=2ecc71&size=1" alt="" class="mr-2 rounded">
+          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+            <strong class="d-block text-gray-dark">{{ post.date | date: date_format }}</strong>
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </p>
+        </div>
+      {% endfor %}
+    </div>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+    <div class="my-3 p-3 post-proj rounded box-shadow">
+      <h6 class="border-bottom pb-2 mb-0">Projects</h6>
+      <div id="projects"></div>
+    </div>
+
+    {% include social.html %}
+
+  </main>
 
 </div>
