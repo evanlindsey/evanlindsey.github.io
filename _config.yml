@@ -1,7 +1,7 @@
 # Site settings / variables
 title: Evan Lindsey
 email: evan@evanlindsey.net
-description: ""
+description: "Posts and Projects"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.evanlindsey.net" # the base hostname & protocol for your site, e.g. http://example.com\
 github_username:  evanlindsey
