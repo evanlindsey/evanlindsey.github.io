@@ -1,5 +1,8 @@
 {
   "name": "evanlindsey.github.io",
+  "version": "1.0.0",
+  "description": "Hosting for evanlindsey.net",
+  "license": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "bundle": "bash -c 'bundle exec'",

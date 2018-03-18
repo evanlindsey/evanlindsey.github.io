@@ -1,16 +1,12 @@
 source "https://rubygems.org"
 
-#   bundle install/update
+#   bundle install / update
 
-# Ubuntu
-#gem "therubyracer"
-#gem "jekyll", "~> 3.7.2"
+gem "therubyracer"
+gem "jekyll"
+gem "jekyll-admin", group: :jekyll_plugins
 
-# GitHub
-gem "github-pages", group: :jekyll_plugins
 group :jekyll_plugins do
-   gem "jekyll-feed", "~> 0.6"
+   gem "jekyll-feed"
+   gem "jekyll-coffeescript"
 end
-
-# CoffeeScript
-gem "jekyll-coffeescript"

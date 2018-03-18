@@ -1,4 +1,3 @@
-# Site settings / variables
 title: Evan Lindsey
 email: evan@evanlindsey.net
 description: "Posts and Projects from Evan Lindsey"
@@ -7,7 +6,6 @@ url: "https://www.evanlindsey.net" # the base hostname & protocol for your site,
 github_username:  evanlindsey
 logo_url: "https://avatars3.githubusercontent.com/u/8053238"
 
-# Build settings
 markdown: kramdown
 plugins:
   - jekyll-feed
