@@ -16,25 +16,7 @@ layout: default
       </div>
     </div>
 
-    <div class="my-3 p-3 post-proj rounded box-shadow">
-      <h6 class="border-bottom pb-2 mb-0">Posts</h6>
-      {% for post in site.posts %}
-      <div class="media text-muted pt-3">
-        <img data-src="holder.js/32x32?theme=thumb&bg=2ecc71&fg=2ecc71&size=1" alt="" class="mr-2 rounded">
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-          <strong class="d-block text-gray-dark">{{ post.date | date: date_format }}</strong>
-          {% if post.external_url %}
-          <a href="{{ post.external_url | relative_url }}">{{ post.title | escape }}</a>
-          {% else %}
-          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-          {% endif %}
-        </p>
-      </div>
-      {% endfor %}
-    </div>
-
-    <div class="my-3 p-3 post-proj rounded box-shadow">
+    <div class="my-3 p-3 proj rounded box-shadow">
       <h6 class="border-bottom pb-2 mb-0">Projects</h6>
       <div id="projects"></div>
     </div>
