@@ -1,11 +1,25 @@
 <div class="my-3">
-
   <small class="d-block text-right mt-3">
-
     <div class="footer-col footer-col-2">
-      {% include icon-github.html username=site.github_username %} {% include icon-linkedin.html username=site.linkedin_username %} {% include icon-rss.html %}
+      <div class="social-links">
+        <a
+          href="https://github.com/{{ site.github_username }}"
+          target="_blank"
+          title="GitHub"
+        >
+          <i class="fab fa-github glow-text"></i>
+        </a>
+        <a
+          href="https://linkedin.com/in/{{ site.linkedin_username }}"
+          target="_blank"
+          title="LinkedIn"
+        >
+          <i class="fab fa-linkedin glow-text"></i>
+        </a>
+        <a href="{{ '/feed.xml' | relative_url }}" target="_blank" title="RSS">
+          <i class="fas fa-rss glow-text"></i>
+        </a>
+      </div>
     </div>
-
   </small>
-
 </div>

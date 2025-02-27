@@ -1,18 +1,28 @@
 {
-  "name": "evanlindsey.github.io",
+  "private": true,
   "version": "1.0.0",
-  "description": "Hosting for evanlindsey.net",
-  "license": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle": "bash -c 'bundle exec'",
-    "serve": "bash -c 'jekyll serve'"
-  },
+  "name": "evanlindsey.github.io",
+  "author": "Evan Lindsey",
+  "description": "evanlindsey.net",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/evanlindsey/evanlindsey.github.io.git"
   },
-  "author": "Evan Lindsey",
-  "dependencies": {},
-  "devDependencies": {}
+  "scripts": {
+    "install": "gem install bundler jekyll && bundle install",
+    "serve": "bundle exec jekyll serve",
+    "format": "prettier --write \"**/*.{js,css,scss,json,md}\"",
+    "format:coffee": "coffee-fmt --indent_style space --indent_size 2 -i assets/scripts/main.coffee > assets/scripts/main.coffee.tmp && mv assets/scripts/main.coffee.tmp assets/scripts/main.coffee",
+    "lint": "eslint \"**/*.{js,coffee}\"",
+    "fix": "npm run format && npm run format:coffee && npm run lint --fix"
+  },
+  "devDependencies": {
+    "coffee-fmt": "^0.12.0",
+    "coffeescript": "^2.7.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-coffee": "^0.1.15",
+    "prettier": "^3.5.2",
+    "read-pkg-up": "^7.0.1"
+  }
 }

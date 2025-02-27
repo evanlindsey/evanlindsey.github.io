@@ -2,27 +2,59 @@
 layout: default
 ---
 
+<div class="retrowave-background"></div>
+
 <div class="home">
+  <h1 style="display: none">Evan Lindsey</h1>
 
-  <h1 style="display:none;">Evan Lindsey</h1>
+  <div class="crt-monitor">
+    <div class="crt-screen crt-scanlines crt-flicker">
+      <div class="terminal">
+        <div class="terminal-header">
+          <pre class="glow-text terminal-ascii desktop-ascii">
+███████╗██╗   ██╗ █████╗ ███╗   ██╗    ██╗     ██╗███╗   ██╗██████╗ ███████╗███████╗██╗   ██╗
+██╔════╝██║   ██║██╔══██╗████╗  ██║    ██║     ██║████╗  ██║██╔══██╗██╔════╝██╔════╝╚██╗ ██╔╝
+█████╗  ██║   ██║███████║██╔██╗ ██║    ██║     ██║██╔██╗ ██║██║  ██║███████╗█████╗   ╚████╔╝ 
+██╔══╝  ╚██╗ ██╔╝██╔══██║██║╚██╗██║    ██║     ██║██║╚██╗██║██║  ██║╚════██║██╔══╝    ╚██╔╝  
+███████╗ ╚████╔╝ ██║  ██║██║ ╚████║    ███████╗██║██║ ╚████║██████╔╝███████║███████╗   ██║   
+╚══════╝  ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═══╝    ╚══════╝╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚══════╝   ╚═╝   
+          </pre>
+          <pre class="glow-text terminal-ascii mobile-ascii">
+███████╗██╗   ██╗ █████╗ ███╗   ██╗
+██╔════╝██║   ██║██╔══██╗████╗  ██║
+█████╗  ██║   ██║███████║██╔██╗ ██║
+██╔══╝  ╚██╗ ██╔╝██╔══██║██║╚██╗██║
+███████╗ ╚████╔╝ ██║  ██║██║ ╚████║
+╚══════╝  ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═══╝
+██╗     ██╗███╗   ██╗██████╗ ███████╗███████╗██╗   ██╗
+██║     ██║████╗  ██║██╔══██╗██╔════╝██╔════╝╚██╗ ██╔╝
+██║     ██║██╔██╗ ██║██║  ██║███████╗█████╗   ╚████╔╝ 
+██║     ██║██║╚██╗██║██║  ██║╚════██║██╔══╝    ╚██╔╝  
+███████╗██║██║ ╚████║██████╔╝███████║███████╗   ██║   
+╚══════╝╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚══════╝   ╚═╝   
+          </pre>
+          <div>RETROWAVE OS v1.0.0 - © 1987-{{ site.time | date: '%Y' }}</div>
+          <div>Type 'help' for available commands.</div>
+        </div>
 
-  <main role="main" class="container">
+        <div class="terminal-output" id="terminal-output">
+          <!-- Terminal output will be populated here -->
+        </div>
 
-    <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-orange rounded box-shadow">
-      <img class="mr-3" src="{{ site.logo_url }}" alt="" width="48" height="48">
-      <div class="lh-100">
-        <h6 class="mb-0 text-white lh-100">Evan Lindsey</h6>
-        <small>Stuff. Things.</small>
+        <div class="terminal-prompt">
+          <span class="terminal-prompt-text">guest@evanlindsey:~$</span>
+          <input
+            type="text"
+            class="terminal-input"
+            id="terminal-input"
+            autofocus
+          />
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="my-3 p-3 proj rounded box-shadow">
-      <h6 class="border-bottom pb-2 mb-0">Projects</h6>
-      <div id="projects"></div>
-    </div>
+  <div class="retro-sun"></div>
 
-    {% include social.html %}
-
-  </main>
-
+  <div class="social-links">{% include social.html %}</div>
 </div>

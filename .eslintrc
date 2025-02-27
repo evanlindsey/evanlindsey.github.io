@@ -1,0 +1,16 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jquery": true,
+  },
+  "extends": ["eslint:recommended", "prettier"],
+  "plugins": ["coffee"],
+  "overrides": [
+    {
+      "files": ["**/*.coffee"],
+      "parser": "eslint-plugin-coffee",
+      "extends": ["plugin:coffee/eslint-recommended"],
+    },
+  ],
+}

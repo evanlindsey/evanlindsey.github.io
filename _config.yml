@@ -1,8 +1,7 @@
 title: Evan Lindsey
-email: evan@evanlindsey.net
-description: "Projects from Evan Lindsey"
+description: "Evan Lindsey's Personal Retrowave Terminal"
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://www.evanlindsey.net" # the base hostname & protocol for your site, e.g. http://example.com\
+url: "https://www.evanlindsey.net" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  evanlindsey
 linkedin_username:  evan-lindsey
 logo_url: "https://avatars3.githubusercontent.com/u/8053238"

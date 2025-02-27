@@ -1,10 +1,8 @@
 source "https://rubygems.org"
 
-#   bundle install / update
-
 gem "therubyracer"
 gem "jekyll"
-gem "jekyll-admin", group: :jekyll_plugins
+gem "logger"
 
 group :jekyll_plugins do
    gem "jekyll-feed"

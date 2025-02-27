@@ -1,18 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  {% include head.html %}
 
-{% include head.html %}
+  <body>
+    <div class="retrowave-background"></div>
+    <div class="neon-triangle"></div>
+    <div class="neon-circle"></div>
 
-<body>
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">{{ content }}</div>
+    </main>
 
-  <main class="page-content" aria-label="Content">
-    <div class="wrapper">
-      {{ content }}
+    {% include libraries.html %}
+
+    <!-- Audio controls for optional retrowave music -->
+    <div class="audio-controls">
+      <button
+        id="toggle-audio"
+        class="audio-toggle"
+        title="Toggle Retrowave Music"
+      >
+        <i class="fas fa-music"></i>
+      </button>
+      <audio id="background-audio" loop>
+        <source src="/assets/audio/retrowave.mp3" type="audio/mpeg" />
+      </audio>
     </div>
-  </main>
 
-  {% include libraries.html %}
+    <script>
+      // Initialize audio controls
+      document.addEventListener('DOMContentLoaded', function () {
+        const audioToggle = document.getElementById('toggle-audio');
+        const audio = document.getElementById('background-audio');
 
-</body>
+        // Set initial volume
+        audio.volume = 0.5;
 
+        audioToggle.addEventListener('click', function () {
+          if (audio.paused) {
+            audio.play().catch(function (error) {
+              console.log('Audio playback failed:', error);
+            });
+            audioToggle.classList.add('active');
+          } else {
+            audio.pause();
+            audioToggle.classList.remove('active');
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
