@@ -21,6 +21,7 @@ class RetroTerminal
 			'echo': @echo.bind(this)
 			'matrix': @showMatrix.bind(this)
 			'invaders': @showSpaceInvaders.bind(this)
+			'snake': @showSnake.bind(this)
 			'ls': @listCommands.bind(this)
 
 	initialize: ->
@@ -44,6 +45,11 @@ class RetroTerminal
 		# Show welcome message
 		@printOutput "Welcome to Evan Lindsey's personal terminal.", 'welcome-msg'
 		@printOutput "Type <span class=\"cmd-highlight\">help</span> to see available commands.", 'help-hint'
+
+		# Scroll terminal input into view on mobile after a short delay
+		setTimeout =>
+			@terminalInput.scrollIntoView({ behavior: 'smooth', block: 'end' })
+		, 100
 
 	loadProjects: ->
 		CACHE_KEY = 'github_projects_cache'
@@ -134,6 +140,7 @@ class RetroTerminal
 			{ cmd: 'ls', desc: 'Alias for help' }
 			{ cmd: 'matrix', desc: 'Show a Matrix-like animation' }
 			{ cmd: 'projects', desc: 'List my GitHub projects' }
+			{ cmd: 'snake', desc: 'Play Snake mini-game' }
 		]
 
 		@printOutput '<span class="section-title">Available Commands:</span>', 'help-title'
@@ -280,7 +287,7 @@ class RetroTerminal
 	showSpaceInvaders: ->
 		gameContainer = document.createElement('div')
 		gameContainer.className = 'invaders-container'
-		gameContainer.innerHTML = '<div class="invaders-text">Space Invaders activated. Use ← → to move, SPACE to shoot. Press ESC to exit.</div>'
+		gameContainer.innerHTML = '<div class="invaders-text">Space Invaders activated. Use ← → or A/D to move, SPACE or W to shoot. Press ESC to exit.</div>'
 		@terminalOutput.appendChild(gameContainer)
 
 		# Ensure container is in the DOM before creating canvas
@@ -293,6 +300,28 @@ class RetroTerminal
 			game = new SpaceInvaders canvas, (score, level) =>
 				@terminalOutput.removeChild(gameContainer)
 				@printOutput "Space Invaders game ended. Final score: #{score}, Level: #{level}", 'game-result'
+
+			game.start()
+
+			# Auto-scroll after adding new content
+			@scrollToBottom()
+
+	showSnake: ->
+		gameContainer = document.createElement('div')
+		gameContainer.className = 'snake-container'
+		gameContainer.innerHTML = '<div class="snake-text">Snake activated. Use ← → ↑ ↓ or WASD to move. Press ESC to exit.</div>'
+		@terminalOutput.appendChild(gameContainer)
+
+		# Ensure container is in the DOM before creating canvas
+		requestAnimationFrame =>
+			canvas = document.createElement('canvas')
+			canvas.className = 'snake-canvas'
+			gameContainer.appendChild(canvas)
+
+			# Create and start the game
+			game = new SnakeGame canvas, (score, highScore) =>
+				@terminalOutput.removeChild(gameContainer)
+				@printOutput "Snake game ended. Score: #{score} | High Score: #{highScore}", 'game-result'
 
 			game.start()
 

@@ -12,13 +12,10 @@
     "setup": "bundle install",
     "serve": "bundle exec jekyll serve",
     "build": "bundle exec jekyll build",
-    "format": "prettier --write \"**/*.{js,css,scss,json,md}\"",
-    "lint": "eslint \"**/*.js\"",
-    "fix": "npm run format && npm run lint --fix"
+    "format": "prettier --write \"**/*.{css,scss,json,md}\""
   },
   "devDependencies": {
     "coffeescript": "^2.7.0",
-    "eslint": "^9.16.0",
     "prettier": "^3.5.2"
   }
 }

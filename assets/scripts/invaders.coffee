@@ -50,10 +50,16 @@ class @SpaceInvaders
 		@onExit?(@score, @level)
 
 	handleKeyDown: (e) ->
+		# Prevent all input from reaching terminal while game is active
+		e.preventDefault()
+		e.stopPropagation()
+
 		switch e.key
-			when 'ArrowLeft' then @player.isMovingLeft = true
-			when 'ArrowRight' then @player.isMovingRight = true
-			when ' '
+			when 'ArrowLeft', 'a', 'A'
+				@player.isMovingLeft = true
+			when 'ArrowRight', 'd', 'D'
+				@player.isMovingRight = true
+			when ' ', 'w', 'W'
 				@bullets.push
 					x: @player.x + @player.width / 2 - 2
 					y: @player.y
@@ -62,12 +68,11 @@ class @SpaceInvaders
 					speed: 7
 			when 'Escape'
 				@stop()
-				e.preventDefault()
 
 	handleKeyUp: (e) ->
 		switch e.key
-			when 'ArrowLeft' then @player.isMovingLeft = false
-			when 'ArrowRight' then @player.isMovingRight = false
+			when 'ArrowLeft', 'a', 'A' then @player.isMovingLeft = false
+			when 'ArrowRight', 'd', 'D' then @player.isMovingRight = false
 
 	initStars: ->
 		for i in [0...50]

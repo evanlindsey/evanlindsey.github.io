@@ -401,6 +401,46 @@ body {
   text-shadow: 0 0 8px var(--retrowave-yellow);
 }
 
+/* Snake game */
+.snake-container {
+  position: relative;
+  margin: 10px 0;
+  width: 100%;
+  height: 450px;
+  background-color: black;
+  z-index: 10;
+  overflow: hidden;
+  border: 2px solid var(--retrowave-pink);
+  border-radius: 5px;
+  box-shadow:
+    0 0 15px var(--retrowave-pink),
+    inset 0 0 15px var(--retrowave-pink);
+}
+
+.snake-text {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 10px;
+  color: var(--retrowave-orange);
+  text-shadow: 0 0 5px var(--retrowave-orange);
+  z-index: 12;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.snake-canvas {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  z-index: 11;
+  border: 1px solid var(--retrowave-blue);
+  box-shadow: 0 0 10px var(--retrowave-blue);
+}
+
 /* ASCII art */
 .ascii-art {
   color: var(--retrowave-yellow);
@@ -458,12 +498,27 @@ body {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .crt-monitor {
-    margin: 20px;
-    border-width: 10px;
+    margin: 10px;
+    border-width: 8px;
   }
 
   .crt-screen {
-    height: 70vh;
+    height: 80vh;
+    padding: 10px;
+  }
+
+  .terminal {
+    font-size: 1rem;
+  }
+
+  .terminal-ascii {
+    font-size: 0.45rem;
+    line-height: 1.1;
+    overflow-x: auto;
+  }
+
+  .terminal-header {
+    margin-bottom: 10px;
   }
 
   .neon-triangle,
@@ -483,5 +538,19 @@ body {
 
   .mobile-ascii {
     display: block;
+  }
+
+  /* Ensure games scale on mobile */
+  .invaders-container,
+  .snake-container {
+    height: 350px;
+  }
+
+  .invaders-text,
+  .snake-text {
+    font-size: 0.8rem;
+    white-space: normal;
+    text-align: center;
+    padding: 0 10px;
   }
 }
