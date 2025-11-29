@@ -54,11 +54,16 @@ class @SpaceInvaders
 		e.preventDefault()
 		e.stopPropagation()
 
+		# Immediate step on keypress (helps mobile where holding keys doesn't work)
+		tapStep = 30
+
 		switch e.key
 			when 'ArrowLeft', 'a', 'A'
 				@player.isMovingLeft = true
+				@player.x = Math.max(0, @player.x - tapStep)
 			when 'ArrowRight', 'd', 'D'
 				@player.isMovingRight = true
+				@player.x = Math.min(@canvas.width - @player.width, @player.x + tapStep)
 			when ' ', 'w', 'W'
 				@bullets.push
 					x: @player.x + @player.width / 2 - 2
@@ -153,8 +158,8 @@ class @SpaceInvaders
 			@ctx.textAlign = 'left'
 
 	getEnemyMoveDelay: ->
-		baseDelay = 800
-		Math.max(100, baseDelay - (@level * 70))
+		baseDelay = 500
+		Math.max(100, baseDelay - (@level * 50))
 
 	getEnemySidewaysSpeed: ->
 		baseSpeed = 5

@@ -13,11 +13,12 @@ class @SnakeGame
 		# Game state
 		@snake = []
 		@food = { x: 0, y: 0 }
-		@direction = { x: 1, y: 0 }
-		@nextDirection = { x: 1, y: 0 }
+		@direction = { x: 0, y: 0 }
+		@nextDirection = { x: 0, y: 0 }
 		@score = 0
 		@highScore = parseInt(localStorage.getItem('snake_high_score')) || 0
 		@gameOver = false
+		@paused = true # Start paused until player presses a direction
 		@speed = 150 # Starting speed (ms per frame) - slower = easier
 		@minSpeed = 60 # Fastest possible speed
 		@gameLoopId = null
@@ -29,7 +30,7 @@ class @SnakeGame
 		@initSnake()
 		@placeFood()
 		document.addEventListener 'keydown', @handleKeyDown
-		@gameLoop()
+		@drawLoop()
 
 	stop: ->
 		clearTimeout(@gameLoopId) if @gameLoopId
@@ -48,17 +49,25 @@ class @SnakeGame
 			when 'ArrowUp', 'w', 'W'
 				if @direction.y != 1
 					@nextDirection = { x: 0, y: -1 }
+					@startGame() if @paused
 			when 'ArrowDown', 's', 'S'
 				if @direction.y != -1
 					@nextDirection = { x: 0, y: 1 }
+					@startGame() if @paused
 			when 'ArrowLeft', 'a', 'A'
 				if @direction.x != 1
 					@nextDirection = { x: -1, y: 0 }
+					@startGame() if @paused
 			when 'ArrowRight', 'd', 'D'
 				if @direction.x != -1
 					@nextDirection = { x: 1, y: 0 }
+					@startGame() if @paused
 			when 'Escape'
 				@stop()
+
+	startGame: ->
+		@paused = false
+		@gameLoop()
 
 	initSnake: ->
 		startX = Math.floor(@tileCount / 2)
@@ -177,6 +186,17 @@ class @SnakeGame
 		@ctx.fillText("SCORE: #{@score}", 10, 20)
 		@ctx.fillText("HIGH: #{@highScore}", @canvas.width - 100, 20)
 
+		# Paused/start screen
+		if @paused
+			@ctx.fillStyle = 'rgba(0, 0, 0, 0.5)'
+			@ctx.fillRect(0, 0, @canvas.width, @canvas.height)
+
+			@ctx.fillStyle = '#00ffff'
+			@ctx.font = '24px VT323'
+			@ctx.textAlign = 'center'
+			@ctx.fillText('Press a direction to start', @canvas.width / 2, @canvas.height / 2)
+			@ctx.textAlign = 'left'
+
 		# Game over screen
 		if @gameOver
 			@ctx.fillStyle = 'rgba(0, 0, 0, 0.8)'
@@ -199,6 +219,12 @@ class @SnakeGame
 			@ctx.font = '18px VT323'
 			@ctx.fillText('Press ESC to exit', @canvas.width / 2, @canvas.height / 2 + 80)
 			@ctx.textAlign = 'left'
+
+	drawLoop: =>
+		# Just draw the initial state while paused
+		@draw()
+		if @paused and not @gameOver
+			requestAnimationFrame(@drawLoop)
 
 	gameLoop: =>
 		@update()

@@ -11,6 +11,7 @@
   "scripts": {
     "setup": "bundle install",
     "serve": "bundle exec jekyll serve",
+    "serve-lan": "bundle exec jekyll serve --host=0.0.0.0",
     "build": "bundle exec jekyll build",
     "format": "prettier --write \"**/*.{css,scss,json,md}\""
   },

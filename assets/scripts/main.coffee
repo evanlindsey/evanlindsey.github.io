@@ -11,6 +11,7 @@ class RetroTerminal
 		@terminalInput = document.getElementById('terminal-input')
 		@terminalOutput = document.getElementById('terminal-output')
 		@projects = []
+		@gameActive = false
 		@commands =
 			'help': @showHelp.bind(this)
 			'clear': @clearTerminal.bind(this)
@@ -30,6 +31,7 @@ class RetroTerminal
 
 		# Add event listener for the terminal input
 		@terminalInput.addEventListener 'keydown', (event) =>
+			return if @gameActive
 			if event.key == 'Enter'
 				command = @terminalInput.value.trim().toLowerCase()
 				@handleCommand(command)
@@ -285,6 +287,10 @@ class RetroTerminal
 			@scrollToBottom()
 
 	showSpaceInvaders: ->
+		# Disable terminal input while game is active
+		@gameActive = true
+		@terminalInput.blur()
+
 		gameContainer = document.createElement('div')
 		gameContainer.className = 'invaders-container'
 		gameContainer.innerHTML = '<div class="invaders-text">Space Invaders activated. Use ← → or A/D to move, SPACE or W to shoot. Press ESC to exit.</div>'
@@ -298,8 +304,17 @@ class RetroTerminal
 
 			# Create and start the game
 			game = new SpaceInvaders canvas, (score, level) =>
+				@gameActive = false
 				@terminalOutput.removeChild(gameContainer)
 				@printOutput "Space Invaders game ended. Final score: #{score}, Level: #{level}", 'game-result'
+				@terminalInput.focus()
+
+			# Add exit button for mobile
+			exitBtn = document.createElement('button')
+			exitBtn.className = 'game-exit-btn'
+			exitBtn.textContent = 'EXIT'
+			exitBtn.addEventListener 'click', -> game.stop()
+			gameContainer.appendChild(exitBtn)
 
 			game.start()
 
@@ -307,6 +322,10 @@ class RetroTerminal
 			@scrollToBottom()
 
 	showSnake: ->
+		# Disable terminal input while game is active
+		@gameActive = true
+		@terminalInput.blur()
+
 		gameContainer = document.createElement('div')
 		gameContainer.className = 'snake-container'
 		gameContainer.innerHTML = '<div class="snake-text">Snake activated. Use ← → ↑ ↓ or WASD to move. Press ESC to exit.</div>'
@@ -320,8 +339,17 @@ class RetroTerminal
 
 			# Create and start the game
 			game = new SnakeGame canvas, (score, highScore) =>
+				@gameActive = false
 				@terminalOutput.removeChild(gameContainer)
 				@printOutput "Snake game ended. Score: #{score} | High Score: #{highScore}", 'game-result'
+				@terminalInput.focus()
+
+			# Add exit button for mobile
+			exitBtn = document.createElement('button')
+			exitBtn.className = 'game-exit-btn'
+			exitBtn.textContent = 'EXIT'
+			exitBtn.addEventListener 'click', -> game.stop()
+			gameContainer.appendChild(exitBtn)
 
 			game.start()
 

@@ -152,6 +152,7 @@ body {
 
 .terminal-prompt {
   display: flex;
+  align-items: center;
 }
 
 .terminal-prompt-text {
@@ -167,6 +168,9 @@ body {
   font-size: 1.2rem;
   flex-grow: 1;
   outline: none;
+  padding: 0;
+  margin: 0;
+  line-height: inherit;
 }
 
 .terminal-input:focus {
@@ -495,6 +499,11 @@ body {
   display: none;
 }
 
+/* Game exit button - hidden on desktop, shown on mobile */
+.game-exit-btn {
+  display: none;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .crt-monitor {
@@ -521,6 +530,10 @@ body {
     margin-bottom: 10px;
   }
 
+  .terminal-input {
+    font-size: 1rem;
+  }
+
   .neon-triangle,
   .neon-circle {
     display: none;
@@ -543,14 +556,52 @@ body {
   /* Ensure games scale on mobile */
   .invaders-container,
   .snake-container {
-    height: 350px;
+    height: auto;
+    position: relative;
+    overflow: visible;
+  }
+
+  .invaders-canvas,
+  .snake-canvas {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    max-width: 100%;
+    height: auto;
   }
 
   .invaders-text,
   .snake-text {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
     font-size: 0.8rem;
     white-space: normal;
     text-align: center;
-    padding: 0 10px;
+    padding: 10px 70px 10px 10px; /* Right padding for exit button */
+  }
+
+  /* Show exit button on mobile */
+  .game-exit-btn {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: var(--retrowave-pink);
+    color: #000;
+    border: none;
+    padding: 8px 16px;
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 0 10px var(--retrowave-pink);
+  }
+
+  .game-exit-btn:active {
+    background: var(--retrowave-orange);
+    box-shadow: 0 0 10px var(--retrowave-orange);
   }
 }
